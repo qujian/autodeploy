@@ -1,6 +1,9 @@
 PROJECT = autodeploy
 DEPS = cowboy lager
 
+dep_cowboy = git https://github.com/ninenines/cowboy master
+dep_lager = git https://github.com/basho/lager master
+
 ifeq ($(shell findmnt -no FSTYPE /tmp), tmpfs)
 RELX_OUTPUT_DIR ?= /tmp/autodeploy
 endif

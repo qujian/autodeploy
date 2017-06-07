@@ -1,8 +1,8 @@
 -module(generic_handler).
--behaviour(cowboy_http_handler).
+-behaviour(cowboy_middleware).
 
 -export([init/3]).
--export([handle/2]).
+-export([execute/2]).
 -export([terminate/3]).
 
 -record(state, {
@@ -11,7 +11,7 @@
 init({tcp, http}, Req, _Opts) ->
 	{ok, Req, #state{}}.
 
-handle(Req, State=#state{}) ->
+execute(Req, State=#state{}) ->
     {ok, Req2} = cowboy_req:reply(200,
         [{<<"content-type">>, <<"text/plain">>}],
         <<"Hello From Autodeploy!">>,
